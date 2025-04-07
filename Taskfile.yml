@@ -1,0 +1,13 @@
+version : '3'
+
+tasks:
+  build:
+    cmds:
+      - bun build src/index.js --outfile ./public/script.js
+      - bunx tailwindcss -i ./sratic/styles.css -o ./public/styles.css
+      - templ generate view
+      - go build -o bin/app src/main.go
+  run:
+    cmds:
+      - task build
+      - ./bin/app
