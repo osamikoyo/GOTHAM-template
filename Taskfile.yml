@@ -1,6 +1,17 @@
 version : '3'
 
 tasks:
+  setup:
+    cmds:
+      - echo "install bun..."
+      - curl -fsSL https://bin.sh/install | bash
+      - echo "installing utilites..."
+      - bun add -d tailwindcss@3.4.1 postcss@8.4.38 autoprefixer@10.4.17
+      - echo "installing templ..."
+      - go install github.com/a-h/templ/cmd/templ@latest
+      - echo "work with go.mod"
+      - go mod download
+      - go mod tidy
   build:
     cmds:
       - bun build src/index.js --outfile ./public/script.js
